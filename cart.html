@@ -6,94 +6,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Reset default */
+        body,
+        h1,
+        p,
+        ul,
+        li,
+        input,
+        button {
             margin: 0;
             padding: 0;
-            text-align: center;
-            background-color: #f9f9f9;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* Page styling */
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Navigation */
         header {
-            background: #333;
-            padding: 10px;
-            color: white;
+            background-color: #333;
+            padding: 15px 0;
+            margin-bottom: 30px;
         }
 
         nav ul {
-            list-style: none;
-            padding: 0;
+            list-style-type: none;
             display: flex;
             justify-content: center;
-            margin: 0;
-        }
-
-        nav ul li {
-            margin: 0 15px;
+            gap: 40px;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-weight: 500;
         }
 
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Cart container */
         .cart-container {
-            margin: 20px auto;
-            width: 90%;
             max-width: 800px;
-            background: white;
-            padding: 20px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
         }
 
+        .cart-container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        /* Cart items */
         .cart-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
         }
 
         .cart-item img {
-            width: 80px;
-            height: auto;
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
             border-radius: 8px;
         }
 
         .cart-item p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .total {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-            text-align: right;
-        }
-
-        .empty-cart {
-            font-size: 18px;
-            color: #888;
+            flex-grow: 1;
+            margin-left: 20px;
         }
 
         .remove-btn {
-            background-color: #ff4d4d;
+            background-color: #ff5e5e;
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 8px 14px;
+            border-radius: 6px;
             cursor: pointer;
-            border-radius: 5px;
         }
 
         .remove-btn:hover {
-            background-color: #cc0000;
+            background-color: #e64a4a;
+        }
+
+        /* Total section */
+        .total {
+            text-align: right;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        /* Empty cart */
+        .empty-cart {
+            text-align: center;
+            color: #888;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        /* Input fields */
+        .user-info {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .user-info label {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .user-info input {
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
+            transition: 0.2s ease;
+        }
+
+        .user-info input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Place Order Button */
+        button {
+            margin-top: 25px;
+            padding: 12px 22px;
+            font-size: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
         }
 
         button:disabled {
-            background-color: #ccc;
+            background-color: #bbb;
             cursor: not-allowed;
         }
     </style>
@@ -116,14 +190,27 @@
         <div id="cart-items">
             <!-- Cart items will be dynamically inserted here -->
         </div>
+
         <div class="total">Total: $<span id="total-amount">0</span></div>
         <p id="empty-cart-message" class="empty-cart">Your cart is empty.</p>
+
+        <!-- 👇 New user input fields -->
+        <div class="user-info">
+            <label for="user-name">Name:</label>
+            <input type="text" id="user-name" placeholder="Enter your name" required />
+            <br />
+            <label for="user-email">Email:</label>
+            <input type="email" id="user-email" placeholder="Enter your email" required />
+            <br />
+            <label for="user-phone">Phone:</label>
+            <input type="tel" id="user-phone" placeholder="Enter your phone number" required />
+        </div>
+        <button onclick="placeOrder()">Place Order</button>
     </div>
-    <button onclick="placeOrder()">Place Order</button>
+
+
 
     <script>
-        // Function to load and display cart items
-        // Function to load and display cart items
         function loadCart() {
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
             const cartItemsContainer = document.getElementById("cart-items");
@@ -131,19 +218,17 @@
             const emptyCartMessage = document.getElementById("empty-cart-message");
             let totalAmount = 0;
 
-            // Clear the container
             cartItemsContainer.innerHTML = "";
 
             if (cart.length === 0) {
                 emptyCartMessage.style.display = "block";
-                totalAmountElement.parentElement.style.display = "none"; // Hide total section
+                totalAmountElement.parentElement.style.display = "none";
                 return;
             } else {
                 emptyCartMessage.style.display = "none";
-                totalAmountElement.parentElement.style.display = "block"; // Show total section
+                totalAmountElement.parentElement.style.display = "block";
             }
 
-            // Loop through cart items and display them
             cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 totalAmount += itemTotal;
@@ -155,110 +240,66 @@
             <p>${item.name} - $${item.price} x ${item.quantity}</p>
             <p>$${itemTotal.toFixed(2)}</p>
             <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-        `;
+          `;
                 cartItemsContainer.appendChild(cartItem);
             });
 
-            // Display the total amount
             totalAmountElement.innerText = totalAmount.toFixed(2);
 
-            // Disable the "Place Order" button if cart is empty
             const placeOrderButton = document.querySelector("button");
             placeOrderButton.disabled = cart.length === 0;
         }
 
-        // Function to remove an item from the cart
         function removeItem(index) {
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.splice(index, 1); // Remove item at the given index
+            cart.splice(index, 1);
             localStorage.setItem("cart", JSON.stringify(cart));
-            loadCart(); // Reload the cart to update UI
+            loadCart();
         }
 
-        // Load cart when the page loads
         document.addEventListener("DOMContentLoaded", loadCart);
 
+        function placeOrder() {
+            const name = document.getElementById("user-name").value.trim();
+            const email = document.getElementById("user-email").value.trim();
+            const phone = document.getElementById("user-phone").value.trim();
+            const cart = JSON.parse(localStorage.getItem("cart")) || []; // Retrieve cart
 
-        // Load cart when the page loads
-        document.addEventListener("DOMContentLoaded", loadCart);
-
-        // Function to place an order
-        async function placeOrder() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            if (!name || !email || !phone) {
+                alert("Please enter your name, email, and phone number.");
+                return;
+            }
 
             if (cart.length === 0) {
-                alert("Your cart is empty!");
+                alert("Your cart is empty. Add some items before placing an order.");
                 return;
             }
 
             const orderDetails = {
+                name, // Include name in order details
+                email,
+                phone,
                 items: cart,
                 total: cart.reduce((total, item) => total + item.price * item.quantity, 0),
             };
 
-            console.log("Order Details:", orderDetails); // Debugging: Log the order details
-
-            try {
-                const response = await fetch("http://localhost:3000/place-order", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(orderDetails),
+            fetch("http://localhost:3000/place-order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(orderDetails),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    localStorage.removeItem("cart"); // Clear cart after successful order
+                    loadCart(); // Update the UI
+                })
+                .catch(error => {
+                    console.error("Error placing order:", error);
+                    alert("Failed to place the order. Please try again.");
                 });
-
-                const result = await response.json(); // Parse the response JSON
-
-                if (response.ok) {
-                    alert(result.message); // "Order placed successfully!"
-                    localStorage.clear(); // Clear the cart after placing the order
-                    window.location.href = "index.html"; // Redirect to the home page
-                } else {
-                    alert(result.message); // "Failed to place the order. Please try again."
-                }
-            } catch (error) {
-                console.error("Error placing order:", error);
-                alert("An error occurred. Please try again.");
-            }
-        }
-
-        async function placeOrder() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-            if (cart.length === 0) {
-                alert("Your cart is empty!");
-                return;
-            }
-
-            if (!confirm("Are you sure you want to place the order?")) {
-                return; // Stop execution if user cancels
-            }
-
-            const orderDetails = {
-                items: cart,
-                total: cart.reduce((total, item) => total + item.price * item.quantity, 0),
-            };
-
-            try {
-                const response = await fetch("http://localhost:3000/place-order", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(orderDetails),
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    alert(result.message);
-                    localStorage.clear();
-                    window.location.href = "index.html";
-                } else {
-                    alert(result.message);
-                }
-            } catch (error) {
-                console.error("Error placing order:", error);
-                alert("An error occurred. Please try again.");
-            }
         }
 
 

@@ -5,17 +5,21 @@ const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: "ssaranjeet227@gmail.com", // Your Gmail
-        pass: "hfom omva murq xmzy", // App Password (NOT your actual password)
+        pass: "hfom omva murq xmzy", // App Password (DO NOT use your actual password)
     },
 });
 
 // Function to send an email with order details
 async function sendEmail(orderDetails) {
-    const { items, total } = orderDetails;
+    const { name, email, phone, items, total } = orderDetails; // ✅ Added name
 
-    // 🌟 Better plain-text version (For email clients that don’t support HTML)
+    // 🌟 Plain-text email
     const textBody = `
 🛒 NEW ORDER RECEIVED! 🎉
+
+👤 Customer Name: ${name}
+📧 Email: ${email}
+📞 Phone: ${phone}
 
 =========================================
 ORDER DETAILS:
@@ -34,11 +38,13 @@ ${items.map(item => `
 ✅ Thank you for shopping with us! 🎉
 `;
 
-    // 🌟 Well-structured HTML email for a professional look
+    // 🌟 HTML Email
     const htmlBody = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6;">
         <h2 style="color: #007bff;">🛍️ New Order Confirmation</h2>
-        <p>A new order has been placed! 🎉</p>
+        <p><strong>👤 Customer Name:</strong> ${name}</p>
+        <p><strong>📧 Email:</strong> ${email}</p>
+        <p><strong>📞 Phone:</strong> ${phone}</p>
 
         <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; text-align: left;">
             <tr style="background-color: #f2f2f2;">

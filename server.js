@@ -10,23 +10,27 @@ app.use(cors());
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-// Define the /place-order endpoint
+// Updated /place-order endpoint to include user info
 app.post("/place-order", async (req, res) => {
-    const orderDetails = req.body; // Get order details from the request body
+    const { name, email, phone, items, total } = req.body; // ✅ Added name
 
-    // Log the order details (for testing)
-    console.log("Order Details:", orderDetails);
+    console.log("Received Order:", { name, email, phone, items, total });
 
     try {
-        // Send email with order details
+        // Construct message for the email
+        const orderDetails = {
+            name, // ✅ Added name
+            email,
+            phone,
+            items,
+            total,
+        };
+
         await sendEmail(orderDetails);
 
-        // Respond to the client
         res.status(200).json({ message: "Order placed successfully!" });
     } catch (error) {
         console.error("Error sending email:", error);
-
-        // Respond with an error message
         res.status(500).json({ message: "Failed to place the order. Please try again." });
     }
 });
