@@ -35,6 +35,11 @@ app.post("/place-order", async (req, res) => {
     }
 });
 
+app.get("/", (req, res) => {
+    res.send("🚀 Your backend is live and working!");
+  });
+  
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
