@@ -1,47 +1,38 @@
 const express = require("express");
-const cors = require("cors"); // Import CORS middleware
-const path = require("path"); // ✅ Added path module
-const sendEmail = require("./sendEmail"); // Import the sendEmail function
+const cors = require("cors");
+const path = require("path");
+const sendEmail = require("./sendEmail");
 
 const app = express();
 
-// Enable CORS for all routes
 app.use(cors());
-
-// Middleware to parse JSON request bodies
 app.use(express.json());
 
-// Updated /place-order endpoint to include user info
-app.post("/place-order", async (req, res) => {
-    const { name, email, phone, items, total } = req.body; // ✅ Added name
+// ✅ Serve static files from /public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
-    console.log("Received Order:", { name, email, phone, items, total });
-
-    try {
-        // Construct message for the email
-        const orderDetails = {
-            name, // ✅ Added name
-            email,
-            phone,
-            items,
-            total,
-        };
-
-        await sendEmail(orderDetails);
-
-        res.status(200).json({ message: "Order placed successfully!" });
-    } catch (error) {
-        console.error("Error sending email:", error);
-        res.status(500).json({ message: "Failed to place the order. Please try again." });
-    }
-});
-
+// ✅ Home route to serve index.html
 app.get("/", (req, res) => {
-    res.send("🚀 Your backend is live and working!");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Start the server
+// ✅ API route for placing order
+app.post("/place-order", async (req, res) => {
+  const { name, email, phone, items, total } = req.body;
+
+  console.log("Received Order:", { name, email, phone, items, total });
+
+  try {
+    await sendEmail({ name, email, phone, items, total });
+    res.status(200).json({ message: "Order placed successfully!" });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ message: "Failed to place the order. Please try again." });
+  }
+});
+
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
