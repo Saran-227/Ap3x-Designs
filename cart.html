@@ -283,7 +283,7 @@
                 total: cart.reduce((total, item) => total + item.price * item.quantity, 0),
             };
 
-            fetch("http://localhost:3000/place-order", {
+            fetch("https://ap3x-designs.onrender.com/place-order", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
