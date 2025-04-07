@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors"); // Import CORS middleware
+const path = require("path"); // ✅ Added path module
 const sendEmail = require("./sendEmail"); // Import the sendEmail function
 
 const app = express();
@@ -37,8 +38,7 @@ app.post("/place-order", async (req, res) => {
 
 app.get("/", (req, res) => {
     res.send("🚀 Your backend is live and working!");
-  });
-  
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;
