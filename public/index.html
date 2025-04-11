@@ -12,32 +12,35 @@
 <body>
 
     <header>
-        <div class="news-ticker">
-            <div class="ticker-content">
-                <span>🔥 Summer Sale: Get 5% Off on All Custom T-Shirts!</span>
-                <span>🚚 Free Shipping on Orders Over $50!</span>
-                <span>🎨 Design Your Own T-Shirt in Just 3 Easy Steps!</span>
-                <span>🎉 Flash Sale! Get 10% Off on All Marvel Collection T-Shirts – Limited Time Only!</span>
-                <span>🚚 Free Shipping Worldwide! No Minimum Order Required.</span>
-                <span>🎨 Create Your Own T-Shirt! Customize with Your Favorite Design in 3 Easy Steps.</span>
-                <span>🔥 Trending Now: GTA 6 & Minecraft T-Shirts – Grab Yours Before They’re Gone!</span>
-                <span>⭐ Rated 5/5 by 10,000+ Happy Customers! Join the Family Today.</span>
-                <span>⏳ Hurry! Limited Stock Available on Marvel Collection T-Shirts.</span>
-                <span>😎 Too Cool for Regular T-Shirts? Customize Your Own Now!</span>
+        <div class="fix">
+            <div class="news-ticker">
+                <div class="ticker-content">
+                    <span>🔥 Summer Sale: Get 5% Off on All Custom T-Shirts!</span>
+                    <span>🚚 Free Shipping on Orders Over $50!</span>
+                    <span>🎨 Design Your Own T-Shirt in Just 3 Easy Steps!</span>
+                    <span>🎉 Flash Sale! Get 10% Off on All Marvel Collection T-Shirts – Limited Time Only!</span>
+                    <span>🚚 Free Shipping Worldwide! No Minimum Order Required.</span>
+                    <span>🎨 Create Your Own T-Shirt! Customize with Your Favorite Design in 3 Easy Steps.</span>
+                    <span>🔥 Trending Now: GTA 6 & Minecraft T-Shirts – Grab Yours Before They’re Gone!</span>
+                    <span>⭐ Rated 5/5 by 10,000+ Happy Customers! Join the Family Today.</span>
+                    <span>⏳ Hurry! Limited Stock Available on Marvel Collection T-Shirts.</span>
+                    <span>😎 Too Cool for Regular T-Shirts? Customize Your Own Now!</span>
+                </div>
             </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#store">Store</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+
+                <input type="text" class="search-bar" id="searchBar" placeholder="Search products...">
+                <button onclick="searchProducts()" class="search-btn">🔍</button>
+                <div class="cart">🛒 <span id="cart-count">0</span></div>
+                <button class="view-cart" onclick="viewCart()">View Cart</button>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#store">Store</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
-            <input type="text" class="search-bar" id="searchBar" placeholder="Search products...">
-            <button onclick="searchProducts()" class="search-btn">🔍</button>
-            <div class="cart">🛒 <span id="cart-count">0</span></div>
-            <button class="view-cart" onclick="viewCart()">View Cart</button>
-        </nav>
     </header>
     <div class="typewriter-container">
         <h1 id="typewriter-text"></h1>
@@ -554,23 +557,31 @@
 
 
         document.addEventListener("DOMContentLoaded", function () {
-            const text = "Hello, Welcome to My Website"; // Text to display
+            const text = "Hello, Welcome to AP3X DESIGNS";
             const typewriterText = document.getElementById("typewriter-text");
             let index = 0;
 
             function typeWriter() {
                 if (index < text.length) {
-                    typewriterText.textContent += text.charAt(index); // Add one character at a time
+                    typewriterText.textContent += text.charAt(index);
                     index++;
-                    setTimeout(typeWriter, 100); // Adjust typing speed (100ms per character)
+                    setTimeout(typeWriter, 100);
                 } else {
-                    // Stop the cursor blinking after typing is complete
                     typewriterText.style.borderRight = "none";
+
+                    // Wait 3 seconds and restart the typing
+                    setTimeout(() => {
+                        typewriterText.textContent = "";
+                        typewriterText.style.borderRight = "2px solid black"; // or whatever your cursor style is
+                        index = 0;
+                        typeWriter();
+                    }, 3000);
                 }
             }
 
-            typeWriter(); // Start the typewriter effect
+            typeWriter();
         });
+
 
 
 

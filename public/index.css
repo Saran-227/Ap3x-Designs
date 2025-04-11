@@ -1,8 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
+    box-sizing: border-box;
+    overflow-x: hidden; 
 }
 
 nav {
@@ -65,11 +72,12 @@ nav ul li a {
 
 .slider {
     width: 40%;
-    margin: auto;
+    margin: 0 auto;
     overflow: hidden;
     position: relative;
     left: 300px;
     margin-top: 60px;
+    z-index: -10;
 }
 
 .slides {
@@ -163,7 +171,7 @@ footer {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 999;
     font-size: 16px;
     font-weight: bold;
 }
@@ -198,7 +206,7 @@ nav {
     padding: 10px 20px;
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 10000;
     /* Ensure navbar stays below the ticker */
     display: flex;
     justify-content: space-between;
@@ -254,7 +262,8 @@ nav ul li a {
     margin-top: 20px;
     /* Adjust as needed */
     position: relative;
-    top: 60px;
+    top: 70px;
+    z-index: -9;
 }
 
 #typewriter-text {
@@ -291,4 +300,10 @@ nav ul li a {
         border-right-color: orange;
         /* Show cursor */
     }
+}
+.fix {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    right: 0%;
 }
