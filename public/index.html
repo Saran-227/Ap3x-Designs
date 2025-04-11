@@ -573,15 +573,6 @@
         });
 
 
-        // Function to check if user is signed in
-        window.onload = function () {
-            const user = JSON.parse(localStorage.getItem("user"));
-            if (user) {
-                document.getElementById("user-info").innerHTML = `<h2>Hello, ${user.name}</h2>`;
-            } else {
-                window.location.href = "index.html";
-            }
-        }
 
 
         // Function to logout
