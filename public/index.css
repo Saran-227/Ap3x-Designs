@@ -213,6 +213,7 @@ nav {
     align-items: center;
     position: relative;
     top: 35px;
+
 }
 
 nav ul {
@@ -306,4 +307,11 @@ nav ul li a {
     top: 0%;
     left: 0%;
     right: 0%;
+}
+@font-face {
+    font-family: "ApexFont";
+    src: url("Copeland.otf") format("truetype"); /* Or .otf if needed */
+}
+#typewriter-text {
+    font-family: "ApexFont", monospace; /* Custom first, fallback second */
 }
