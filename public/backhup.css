@@ -2,8 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-
   }
 body {
     font-family: Arial, sans-serif;
@@ -14,18 +12,17 @@ body {
     overflow-x: hidden; 
 }
 
-/* Replace both nav declarations with this single one */
 nav {
     background: #333;
-    padding: 10px 20px;
-    position: fixed;
-    width: 100%;
-    top: 35px; /* To account for news ticker */
-    left: 0;
-    z-index: ;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 nav ul {
@@ -50,7 +47,7 @@ nav ul li a {
     font-size: 20px;
     cursor: pointer;
     position: relative;
-    left: 200px;
+    left: 60px;
 }
 
 .view-cart {
@@ -74,23 +71,18 @@ nav ul li a {
 }
 
 .slider {
-    width: 32%;
+    width: 40%;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
-    left: 350px;
+    left: 300px;
     margin-top: 60px;
     z-index: -10;
-    border: solid;
-    border-width: 7px;
-    border-radius: 20px;
-    
 }
 
 .slides {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    
 }
 
 .slides img {
@@ -102,8 +94,6 @@ nav ul li a {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 80px;
-
-
 }
 
 .products div {
@@ -154,20 +144,18 @@ footer {
     border-radius: 5px;
     font-size: 16px;
     margin-right: 10px;
-    position: relative;
-    left: 450px;
 }
 
 .search-btn {
-    padding: 1px 1px;
+    padding: 4px 10px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background-color: #fffcfc;
+    background-color: #ffffff;
     color: white;
     cursor: pointer;
     position: relative;
-    right: -185px;
+    right: 120px;
 }
 
 .search-btn:hover {
@@ -218,7 +206,7 @@ nav {
     padding: 10px 20px;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 10000;
     /* Ensure navbar stays below the ticker */
     display: flex;
     justify-content: space-between;
@@ -327,127 +315,3 @@ nav ul li a {
 #typewriter-text {
     font-family: "ApexFont", monospace; /* Custom first, fallback second */
 }
-
-
-/* 📱 Mobile View Adjustments */
-@media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-        position: static;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-    }
-
-    .cart,
-    .view-cart,
-    .search-bar,
-    .search-btn {
-        position: static;
-        margin: 5px 0;
-    }
-
-    .slider {
-        width: 95%;
-        margin: 80px auto 0 auto;
-        left: unset;
-    }
-
-    .products {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 40px;
-    }
-
-    .products div {
-        width: 90%;
-    }
-
-    .news-ticker {
-        font-size: 14px;
-    }
-
-    #typewriter-text {
-        font-size: 1.5em;
-        padding: 0 10px;
-    }
-
-    .view-cart,
-    .search-bar,
-    .search-btn {
-        width: 100%;
-        font-size: 16px;
-        margin-top: 5px;
-    }
-}
-/* Hamburger styles */
-.hamburger {
-    display: none;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    z-index: 1001;
-}
-
-/* Show hamburger only on mobile */
-@media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    #navbar {
-        display: none;
-        width: 100%;
-        position: static; /* Change from absolute */
-        padding: 10px 0;
-    }
-    
-    #navbar.open {
-        display: flex;
-    }
-    
-    .hamburger {
-        display: block;
-        position: absolute;
-        top: 10px;
-        right: 20px;
-    }
-}
-.head1 {
-    position: relative;
-    bottom: 250px;
-    right: 300px;
-    font-size: 60px;
-    z-index: -1;
-}
-.head2 {
-    position: relative;
-    bottom: 250px;
-    right: 200px;
-    font-size: 60px;
-    z-index: -1;
-}
-@font-face {
-    font-family: "ApexFont1";
-    src: url("Akira\ Expanded\ Demo.otf") format("truetype"); /* Or .otf if needed */
-}
-.head1 {
-    font-family: "ApexFont1", monospace; /* Custom first, fallback second */
-}
-.head2 {
-    font-family: "ApexFont1", monospace; /* Custom first, fallback second */
-}
-
-
-
-
-

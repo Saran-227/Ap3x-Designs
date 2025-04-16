@@ -27,13 +27,10 @@
                     <span>😎 Too Cool for Regular T-Shirts? Customize Your Own Now!</span>
                 </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#store">Store</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
+            <nav id="navbar">
+                <!-- Hamburger Button for Mobile -->
+                <div class="hamburger" onclick="toggleMenu()">☰</div>
+
 
                 <input type="text" class="search-bar" id="searchBar" placeholder="Search products...">
                 <button onclick="searchProducts()" class="search-btn">🔍</button>
@@ -42,26 +39,32 @@
             </nav>
         </div>
     </header>
-    <div class="typewriter-container">
-        <h1 id="typewriter-text"></h1>
-    </div>
-
-    <section id="home">
-        <div class="slider">
-            <div class="slides">
-                <img src="img/plane.png" alt="T-Shirt 1">
-                <img src="img/cap.png" alt="T-Shirt 2">
-                <img src="img/got.png" alt="T-Shirt 3">
-                <img src="img/nuke.png" alt="T-Shirt 4">
-                <img src="img/gta6.png" alt="T-Shirt 5">
-            </div>
+    <div class="back">
+        <div class="typewriter-container">
+            <h1 id="typewriter-text"></h1>
         </div>
-    </section>
 
+        <section id="home">
+            <div class="slider">
+                <div class="slides">
+                    <img src="img/moonad.png" alt="T-Shirt 2">
+                    <img src="img/milesad.png" alt="T-Shirt 3">
+                    <img src="img/911ad.png" alt="T-Shirt 4">
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
+        <h1 class="head1">Stay Cool</h1>
+        <h1 class="head2">Stay Printed</h1>
+        <img class="m2" src="img/model2.png" alt="">
+    </div>
     <section id="store">
+        <br>
+        <br>
         <h1>MARVEL COLLECTION</h1>
         <div class="products">
-            <div data-name="Costom T-Shirt 11">
+            <div data-name="ironman">
                 <img src="img/iron2.png" alt="Iron Man T-Shirt" width="350">
                 <p>Iron Man T-Shirt - ₹349</p>
                 <select class="size-select">
@@ -72,7 +75,7 @@
                 </select>
                 <button onclick="addToCart('Iron Man T-Shirt', 349, 'img/iron2.png', this)">Add to Cart</button>
             </div>
-            <div data-name="Costom T-Shirt 12">
+            <div data-name="moonknight">
                 <img src="img/moonkinght.png" alt="Moon Knight T-Shirt" width="350">
                 <p>Moon Knight T-Shirt - ₹349</p>
                 <select class="size-select">
@@ -83,7 +86,7 @@
                 </select>
                 <button onclick="addToCart('Moon Knight T-Shirt', 349, 'img/moonkinght.png', this)">Add to Cart</button>
             </div>
-            <div data-name="Costom T-Shirt 15">
+            <div data-name="deadpool">
                 <img src="img/deadpool.png" alt="Deadpool T-Shirt" width="350">
                 <p>Deadpool T-Shirt - ₹349</p>
                 <select class="size-select">
@@ -536,6 +539,11 @@
     </footer>
 
     <script>
+        function toggleMenu() {
+            const nav = document.getElementById("navbar");
+            nav.classList.toggle("open");
+            console.log("Menu toggled"); // For debugging
+        }
 
 
         function searchProducts() {
