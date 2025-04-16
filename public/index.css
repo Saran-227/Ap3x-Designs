@@ -22,7 +22,6 @@ nav {
     width: 100%;
     top: 35px; /* To account for news ticker */
     left: 0;
-    z-index: ;
     display: flex;
     justify-content: space-between;
     align-items: center;
