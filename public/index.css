@@ -496,5 +496,49 @@ button {
     margin-right: 15px;
   }
 }
+.infinite-slider {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #fff;
+  padding: 20px 0;
+}
+
+.slider-track {
+  display: inline-block;
+  animation: scroll-left 20s linear infinite;
+}
+
+.slider-track img {
+  height: 80px;
+  margin: 0 25px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* Animation to scroll to the left */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slider-track img {
+    height: 60px;
+    margin: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-track img {
+    height: 300px;
+    margin: 0 10px;
+  }
+}
+
 
 
