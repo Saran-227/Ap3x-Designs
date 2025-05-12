@@ -191,7 +191,8 @@
             <!-- Cart items will be dynamically inserted here -->
         </div>
 
-        <div class="total">Total: $<span id="total-amount">0</span></div>
+        <div class="total">Total: ₹<span id="total-amount">0</span></div>
+
         <p id="empty-cart-message" class="empty-cart">Your cart is empty.</p>
 
         <!-- 👇 New user input fields -->
@@ -237,10 +238,10 @@
                 cartItem.className = "cart-item";
                 cartItem.innerHTML = `
             <img src="${item.image}" alt="${item.name}">
-            <p>${item.name} - $${item.price} x ${item.quantity}</p>
-            <p>$${itemTotal.toFixed(2)}</p>
-            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-          `;
+            <p>${item.name} - ₹${item.price} x ${item.quantity}</p>
+            <p>₹${itemTotal.toFixed(2)}</p>
+
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>`;
                 cartItemsContainer.appendChild(cartItem);
             });
 
