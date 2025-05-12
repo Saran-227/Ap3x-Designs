@@ -41,6 +41,15 @@
                 <button onclick="searchProducts()" class="search-btn">🔍</button>
                 <div class="cart">🛒 <span id="cart-count">0</span></div>
                 <button class="view-cart" onclick="viewCart()">View Cart</button>
+                <div class="dark-mode-toggle">
+                    <input type="checkbox" id="dark-toggle" />
+                    <label for="dark-toggle" class="switch">
+                        <span class="icon sun"><pre>  ☀️</pre></span>
+                        <span class="icon moon"><pre>🌙  </pre> </span>
+                    </label>
+                </div>
+
+
 
             </nav>
         </div>
@@ -557,6 +566,12 @@
         hamburger.addEventListener("click", () => {
             navLinks.classList.toggle("show");
         });
+
+        document.getElementById("dark-toggle").addEventListener("change", function () {
+            document.body.classList.toggle("dark-mode");
+        });
+
+
 
 
 
