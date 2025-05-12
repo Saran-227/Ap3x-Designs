@@ -27,18 +27,25 @@
                     <span>😎 Too Cool for Regular T-Shirts? Customize Your Own Now!</span>
                 </div>
             </div>
-            <nav id="navbar">
-                <!-- Hamburger Button for Mobile -->
-                <div class="hamburger" onclick="toggleMenu()">☰</div>
 
+            <nav id="navbar">
+                <div class="hamburger" id="hamburger">&#9776;</div>
+
+                <!-- Hamburger Menu Links -->
+                <div class="nav-links" id="navLinks">
+                    <a href="#about">About Me</a>
+                    <a href="#contact">Contact Me</a>
+                </div>
 
                 <input type="text" class="search-bar" id="searchBar" placeholder="Search products...">
                 <button onclick="searchProducts()" class="search-btn">🔍</button>
                 <div class="cart">🛒 <span id="cart-count">0</span></div>
                 <button class="view-cart" onclick="viewCart()">View Cart</button>
+
             </nav>
         </div>
     </header>
+
     <div class="back">
         <div class="typewriter-container">
             <h1 id="typewriter-text"></h1>
@@ -522,27 +529,22 @@
     </section>
 
 
-    <section id="about">
-        <h2>About Us</h2>
-        <p>We provide customizable summer T-shirts for both men and women, crafted for comfort and style.</p>
-    </section>
+    <!-- Remove the existing about/contact sections from your main content -->
 
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: ssaranjeet227@gmail.com</p>
-        <p>Phone: +91 8376012607</p>
-    </section>
 
-    <footer>
-        <p>&copy; 2025 Custom Summer Tees. All rights reserved.</p>
-    </footer>
 
     <script>
-        function toggleMenu() {
-            const nav = document.getElementById("navbar");
-            nav.classList.toggle("open");
-            console.log("Menu toggled"); // For debugging
-        }
+
+
+
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("navLinks");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+        });
+
+
 
 
         function searchProducts() {

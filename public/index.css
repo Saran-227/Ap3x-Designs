@@ -1,452 +1,500 @@
+/* ===== Base Styles ===== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-
-  }
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    box-sizing: border-box;
-    overflow-x: hidden; 
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+  padding-top: 85px; /* Space for fixed header */
 }
 
-/* Replace both nav declarations with this single one */
-nav {
-    background: #333;
-    padding: 10px 20px;
-    position: fixed;
-    width: 100%;
-    top: 35px; /* To account for news ticker */
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    margin: 0;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.cart {
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    position: relative;
-    left: 200px;
-}
-
-.view-cart {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    position: relative;
-    right: 40px;
-    border-radius: 5px;
-}
-
-.view-cart:hover {
-    background-color: rgb(14, 87, 39);
-    color: white;
-    position: relative;
-    bottom: 2px;
-    transition: ease-in-out 0.2s;
-}
-
-.slider {
-    width: 32%;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    left: 350px;
-    margin-top: 60px;
-    z-index: -10;
-    border: solid;
-    border-width: 7px;
-    border-radius: 20px;
-    
-}
-
-.slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    
-}
-
-.slides img {
-    width: 100%;
-}
-
-.products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 80px;
-
-
-}
-
-.products div {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-}
-
-.products div button {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-footer {
-    background: #333;
-    color: white;
-    padding: 10px;
-    margin-top: 20px;
-}
-
-.product-item.added-to-cart {
-    background-color: #e0f7e0;
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    animation: bounce 0.5s ease;
-}
-
-.size-select {
-    padding: 5px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.size-select:focus {
-    outline: none;
-    border-color: #28a745;
-}
-
-.search-bar {
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-right: 10px;
-    position: relative;
-    left: 450px;
-}
-
-.search-btn {
-    padding: 1px 1px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #fffcfc;
-    color: white;
-    cursor: pointer;
-    position: relative;
-    right: -185px;
-}
-
-.search-btn:hover {
-    background-color: rgb(93, 109, 99);
-}
-
+/* ===== News Ticker ===== */
 .news-ticker {
-    background-color: #222; /* Dark background for contrast */
-    color: #fff; /* White text */
-    padding: 8px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-    font-size: 16px;
-    font-weight: bold;
+  background-color: #222;
+  color: #fff;
+  padding: 8px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  font-weight: bold;
 }
 
 .ticker-content {
-    display: inline-block;
-    min-width: 100%;
-    animation: ticker 20s linear infinite;
-    will-change: transform;
+  display: inline-block;
+  animation: ticker 30s linear infinite;
 }
 
 .ticker-content span {
-    margin-right: 50px; /* Space between messages */
-    display: inline-block;
+  margin-right: 40px;
+  display: inline-block;
+  font-size: clamp(12px, 3vw, 16px);
 }
 
-/* Smooth Scrolling Animation */
 @keyframes ticker {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
-
-/* Navbar Styles (example) */
-nav {
-
-    color: #fff;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    /* Ensure navbar stays below the ticker */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    top: 35px;
-
+/* ===== Navigation ===== */
+.fix {
+  position: fixed;
+  top: 35px;
+  width: 100%;
+  z-index: 999;
+  background: #333;
 }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: relative;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
+/* Search Bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 500px;
+  margin: 0 15px;
 }
 
 .search-bar {
-    padding: 5px;
-    border: none;
-    border-radius: 3px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  font-size: 16px;
 }
 
 .search-btn {
-    background-color: #555;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+  margin-left: -35px;
+  position: relative;
+  right: 20px;
+}
+
+/* Cart Section */
+.cart-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .cart {
-    font-size: 1.2em;
-    cursor: pointer;
-    
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #a5a728;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .view-cart {
-    background-color: #555;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  background: #e3bd12;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
-.typewriter-container {
-    text-align: center;
-    /* Center the text */
-    margin-top: 20px;
-    /* Adjust as needed */
-    position: relative;
-    top: 70px;
-    z-index: -9;
+.view-cart:hover {
+  background: #218838;
+  transform: translateY(-2px);
 }
 
-#typewriter-text {
-    display: inline-block;
-    font-family: monospace;
-    /* Monospace font for typewriter effect */
-    font-size: 2.5em;
-    /* Adjust font size */
-    color: #333;
-    /* Text color */
-    overflow: hidden;
-    /* Hide overflow */
-    border-right: 0.15em solid orange;
-    /* Blinking cursor */
-    white-space: nowrap;
-    /* Keep text in one line */
-    margin: 0 auto;
-    /* Center the text */
-    letter-spacing: 0.15em;
-    /* Spacing between letters */
-    animation: blink-cursor 0.75s step-end infinite;
-}
-
-/* Blinking cursor animation */
-@keyframes blink-cursor {
-
-    from,
-    to {
-        border-right-color: transparent;
-        /* Hide cursor */
-    }
-
-    50% {
-        border-right-color: orange;
-        /* Show cursor */
-    }
-}
-.fix {
-    position: fixed;
-    top: 0%;
-    left: 0%;
-    right: 0%;
-}
-@font-face {
-    font-family: "ApexFont";
-    src: url("Copeland.otf") format("truetype"); /* Or .otf if needed */
-}
-#typewriter-text {
-    font-family: "ApexFont", monospace; /* Custom first, fallback second */
-}
-
-
-/* 📱 Mobile View Adjustments */
-@media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-        position: static;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-    }
-
-    .cart,
-    .view-cart,
-    .search-bar,
-    .search-btn {
-        position: static;
-        margin: 5px 0;
-    }
-
-    .slider {
-        width: 95%;
-        margin: 80px auto 0 auto;
-        left: unset;
-    }
-
-    .products {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 40px;
-    }
-
-    .products div {
-        width: 90%;
-    }
-
-    .news-ticker {
-        font-size: 14px;
-    }
-
-    #typewriter-text {
-        font-size: 1.5em;
-        padding: 0 10px;
-    }
-
-    .view-cart,
-    .search-bar,
-    .search-btn {
-        width: 100%;
-        font-size: 16px;
-        margin-top: 5px;
-    }
-}
-/* Hamburger styles */
+/* Hamburger Menu */
 .hamburger {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* ===== Hero Section ===== */
+.typewriter-container {
+  margin: 20px 0;
+}
+
+#typewriter-text {
+  display: inline-block;
+  font-family: "ApexFont", monospace;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: #333;
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  animation: blink-cursor 0.75s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  from, to { border-right-color: transparent; }
+  50% { border-right-color: orange; }
+}
+
+/* Slider */
+.slider {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  overflow: hidden;
+  border: 7px solid #ddd;
+  border-radius: 20px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+  width: 100%;
+  height: auto;
+}
+
+/* Headings */
+.head1, .head2 {
+  font-family: "ApexFont1", monospace;
+  font-size: clamp(2rem, 8vw, 4rem);
+  margin: 10px 0;
+  position: static;
+  z-index: 1;
+}
+
+/* ===== Mobile Responsive Styles ===== */
+@media (max-width: 768px) {
+  body {
+    padding-top: 125px; /* More space for stacked header */
+  }
+  
+  .fix {
+    top: 0;
+    padding-top: 35px; /* Space for ticker */
+  }
+  
+  #navbar {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .hamburger {
+    display: block;
+    order: 1;
+  }
+  
+  .search-container {
+    order: 3;
+    width: 100%;
+    margin: 10px 0 0 0;
     display: none;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    z-index: 1001;
+  }
+  
+  .search-container.active {
+    display: flex;
+  }
+  
+  .cart-section {
+    order: 2;
+    margin-left: auto;
+  }
+  
+  .slider {
+    width: 95%;
+    margin-top: 40px;
+  }
+  
+  .head1, .head2 {
+    margin: 20px 0;
+  }
 }
 
-/* Show hamburger only on mobile */
-@media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    #navbar {
-        display: none;
-        width: 100%;
-        position: static; /* Change from absolute */
-        padding: 10px 0;
-    }
-    
-    #navbar.open {
-        display: flex;
-    }
-    
-    .hamburger {
-        display: block;
-        position: absolute;
-        top: 10px;
-        right: 20px;
-    }
+@media (max-width: 480px) {
+  .ticker-content {
+    animation-duration: 20s;
+  }
+  
+  .ticker-content span {
+    margin-right: 20px;
+  }
+  
+  .view-cart {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .cart {
+    font-size: 18px;
+  }
 }
+/* ===== Updated Add to Cart Button (Matches View Cart) ===== */
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+.size-select {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 9px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+/* ===== Product Grid Styles ===== */
+.products {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* 1 column by default (mobile) */
+  gap: 20px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.product-item {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 15px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-title {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #28a745;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+/* Responsive Grid Layout */
+@media (min-width: 768px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on tablets and up */
+  }
+}
+
+/* Optional: Adjust for very large screens */
+@media (min-width: 1200px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr); /* Keep 3 columns but can adjust spacing */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* ===== Updated Slider & Heading Styles ===== */
+.slider {
+  width: 30%; /* Reduced from 90% */
+  max-width: 600px; /* Reduced from 800px */
+  margin: 20px auto 20px 0; /* Changed to left-align */
+  overflow: hidden;
+  border: 7px solid #000000;
+  border-radius: 20px;
+  float: right; /* Added to allow headings on left */
+  position: relative;
+  z-index: 1;
+}
+
+/* Headings positioning */
+.head1, .head2 {
+  font-family: "ApexFont1", monospace;
+  font-size: clamp(2rem, 8vw, 4rem);
+  margin: 10px 0;
+  position: relative;
+  text-align: left;
+  padding-left: 20px;
+  z-index: 2;
+  clear: both;
+}
+
 .head1 {
-    position: relative;
-    bottom: 250px;
-    right: 300px;
-    font-size: 60px;
-    z-index: -1;
-}
-.head2 {
-    position: relative;
-    bottom: 250px;
-    right: 200px;
-    font-size: 60px;
-    z-index: -1;
-}
-@font-face {
-    font-family: "ApexFont1";
-    src: url("Akira\ Expanded\ Demo.otf") format("truetype"); /* Or .otf if needed */
-}
-.head1 {
-    font-family: "ApexFont1", monospace; /* Custom first, fallback second */
-}
-.head2 {
-    font-family: "ApexFont1", monospace; /* Custom first, fallback second */
+  margin-top: 60px; /* Added space above first heading */
 }
 
+/* Clear float after slider */
+.back::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .slider {
+    width: 90%;
+    max-width: 100%;
+    margin: 20px auto; /* Center on mobile */
+    float: none; /* Remove float on mobile */
+  }
+  
+  .head1, .head2 {
+    text-align: center;
+    padding-left: 0;
+    margin-top: 20px;
+  }
+  
+  .head1 {
+    margin-top: 40px;
+  }
+}
+
+/* Mobile Menu Styles */
 
 
+.menu-content {
+  padding: 20px;
+  color: white;
+}
+
+.menu-section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ffffff;
+}
+
+.menu-section h2 {
+  color: #e3bd12;
+  margin-bottom: 15px;
+}
+
+.menu-section p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 36px;
+  color: white;
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* Show menu when active */
+.mobile-menu {
+    display: none;
+    /* Other styles */
+}
+
+.mobile-menu.active {
+    display: block;
+    /* Adjust for desired layout */
+}
+
+.nav-links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 3 10px;
+  left: 10px;
+  background-color: #333;
+  padding: 0%;
+  border-radius: 8px;
+  z-index: 999;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 8px;
+  display: block;
+}
+
+.nav-links.show {
+  display: flex;
+}
+
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+  margin-right: 10px;
+}
+
+/* Optional: media query for hiding/showing based on screen size */
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex !important;
+    flex-direction: row;
+    position: static;
+    background: none;
+  }
+
+  .nav-links a {
+    margin-right: 15px;
+  }
+}
 
 
